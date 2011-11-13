@@ -1,0 +1,3 @@
+bankstats_stats_list:
+    pattern: /stats
+    defaults: { _controller: "BankStatsBankBundle:Stats:list" }

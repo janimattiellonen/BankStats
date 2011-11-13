@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block stylesheets %}{% endblock %}
+
+        {% stylesheets filter="less" output="/css/stats.css" "@BankStatsBankBundle/resources/less/stats.less" %}
+            <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+        {% endstylesheets %}
+        
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block container %}{% endblock %}
+
+        <script src="/js/jquery/jquery-1.6.2.min.js"></script>
+        <script src="/js/jquery/jquery-ui-1.8.16.min.js"></script>
+
+        {% javascripts output="/js/main.js" filter="coffee,?yui_js"
+            '@BankStatsBankBundle/Resources/coffee/stats.coffee'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
