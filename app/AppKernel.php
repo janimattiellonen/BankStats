@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
         );
         
-        $bundles[] = new \BankStats\BankBundle\BankStatsBankBundle();
+        $bundles[] = new Stats\BankBundle\StatsBankBundle();
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();

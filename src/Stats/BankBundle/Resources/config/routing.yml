@@ -1,0 +1,14 @@
+stats_stats_list:
+    pattern: /stats
+    defaults: { _controller: "StatsBankBundle:Stats:list" }
+    
+    
+stats_stats_upload_file:
+    pattern: /stats/upload
+    defaults: { _controller: "StatsBankBundle:Stats:upload" }    
+    requirements: { _method: post }
+    
+stats_stats_select_file:
+    pattern: /stats/select-file
+    defaults: { _controller: "StatsBankBundle:Stats:selectFile" }    
+    requirements: { _method: get }    

@@ -3,6 +3,6 @@
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #   prefix:   /_internal
 
-BankStatsBankBundle:
-    resource: "@BankStatsBankBundle/Resources/config/routing.yml"
+StatsBankBundle:
+    resource: "@StatsBankBundle/Resources/config/routing.yml"
     prefix:

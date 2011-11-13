@@ -1,0 +1,4 @@
+services:
+    stats_bank.service.account:
+        class:  Stats\BankBundle\Service\AccountService
+        arguments: ["@doctrine.orm.entity_manager", "@form.factory"]

@@ -1,6 +1,6 @@
 <?php
 
-namespace BankStats\BankBundle\Entity;
+namespace Stats\BankBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
     Symfony\Component\Validator\Constraints as Assert;

@@ -6,7 +6,7 @@
 
         {% block stylesheets %}{% endblock %}
 
-        {% stylesheets filter="less" output="/css/stats.css" "@BankStatsBankBundle/resources/less/stats.less" %}
+        {% stylesheets filter="less" output="/css/stats.css" "@StatsBankBundle/resources/less/stats.less" %}
             <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
         {% endstylesheets %}
         
@@ -19,7 +19,7 @@
         <script src="/js/jquery/jquery-ui-1.8.16.min.js"></script>
 
         {% javascripts output="/js/main.js" filter="coffee,?yui_js"
-            '@BankStatsBankBundle/Resources/coffee/stats.coffee'
+            '@StatsBankBundle/Resources/coffee/stats.coffee'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
