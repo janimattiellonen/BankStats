@@ -57,11 +57,7 @@ class Parser
                 $data = preg_replace("'\s+'", " ", $data);
             });
             
-            
-            
             $data[] = $this->normalize($row, 13);
-            
-            echo "\n\n";
         }
         
         $header = array();
