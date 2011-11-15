@@ -1,4 +1,11 @@
 services:
     stats_bank.service.account:
         class:  Stats\BankBundle\Service\AccountService
-        arguments: ["@doctrine.orm.entity_manager", "@form.factory"]
+        arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@stats.service.upload", "@stats.component.parser"]
+    stats.service.upload:
+        class:  Stats\BankBundle\Service\Uploader
+        arguments: ["%upload_dir%"]
+        
+    stats.component.parser:
+        class:  Stats\Component\Csv\Parser
+        arguments: ["\t"]

@@ -16,6 +16,13 @@ class StatsController extends Controller
     
     public function uploadAction()
     {
+        $request = $this->getRequest();
+        
+        $uploadedFile = $request->files->get('form');
+        
+        $service = $this->container->get('stats_bank.service.account');
+        
+        $service->processFile($uploadedFile['attachment']);
         
     }
     
@@ -23,10 +30,8 @@ class StatsController extends Controller
     {
         $service = $this->container->get('stats_bank.service.account');
         
-        
-        
         return $this->render('StatsBankBundle:Stats:select-file.html.twig', array(
-            'form' => $service->getAccountStatementForm(new AccountStatement() ),
+            'form' => $service->getAccountStatementForm()->createView()
         ));
     }
 }

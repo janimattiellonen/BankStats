@@ -2,4 +2,15 @@
 
 {% block content %}
     Select file
+    
+    <form action="{{ path('stats_stats_upload_file') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+
+    {{ form_row(form.attachment) }}
+
+    {{ form_rest(form) }}
+
+    <input type="submit" />
+</form>
+    
 {% endblock %}
