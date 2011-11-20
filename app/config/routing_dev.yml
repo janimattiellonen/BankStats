@@ -29,3 +29,6 @@ _configurator:
 
 _main:
     resource: routing.yml
+
+_stats:
+    resource: "@StatsBankBundle/Resources/config/routing.yml"

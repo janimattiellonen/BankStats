@@ -65,3 +65,6 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
+parameters:
+    upload_dir: %kernel.root_dir%/../data/uploads/temp

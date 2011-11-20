@@ -24,6 +24,7 @@ class StatsController extends Controller
         
         $service->processFile($uploadedFile['attachment']);
         
+        return $this->render('StatsBankBundle:Stats:uploaded.html.twig');
     }
     
     public function selectFileAction()

@@ -12,3 +12,7 @@ stats_stats_select_file:
     pattern: /stats/select-file
     defaults: { _controller: "StatsBankBundle:Stats:selectFile" }    
     requirements: { _method: get }    
+    
+stats_error_exception:
+    pattern: /error
+    defaults: { _controller: "StatsBankBundle:Error:exception" }
