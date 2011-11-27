@@ -267,7 +267,7 @@ class AccountStatementRepository extends EntityRepository
         
         $qb = $this->createDateRangeQuery($qb, $start, $end);
         
-        
+        return $qb->getQuery()->getResult();
     }
     
     /**
@@ -279,7 +279,7 @@ class AccountStatementRepository extends EntityRepository
      */
     protected function createDateRangeQuery(QueryBuilder $qb, \DateTime $start, \DateTime $end)
     {
-        return $qb->addWhere('account.entryDate BETWEEN :start AND :end')
+        return $qb->andWhere('account.entryDate BETWEEN :start AND :end')
            ->setParameters(array(
                'start' => $start,
                'end' => $end,

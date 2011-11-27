@@ -204,6 +204,7 @@ class AccountService
         $results['average_daily_spending'] = $statistics->calculateAverageDailySpending();
         $results['difference'] = $statistics->calculateDifference();
         $results['top_expenses'] = $this->repository->getHighestWithdrawals(5, $start, $end);
+        $results['all_expenses'] = $this->repository->getWithdrawalsFor($start, $end);
         
         return $results;
     }
