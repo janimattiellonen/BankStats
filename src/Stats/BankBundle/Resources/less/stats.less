@@ -3,6 +3,16 @@ body {
     margin: 20px;
 }
 
+#main
+{
+    float: left;
+    width: 90%;
+    margin: 5px 20px 20px 20px;
+    border-radius: 15px;
+    background: #e1e1e1;
+    padding: 20px;
+}
+
 th
 {
     text-align: left;
@@ -25,7 +35,7 @@ h3
 
 table
 {
-    width: 60%;
+    width: 100%;
     border: 1px solid #999;
     margin-bottom: 20px;
 
@@ -76,7 +86,7 @@ iframe
     {
         border-radius: 15px;
         padding: 10px;
-        width: 46%;
+        width: 40%;
         float: left;
         text-align: center;
     }
@@ -102,7 +112,12 @@ iframe
 
 #tabs
 {
-    width: 60%;
+    table
+    {
+        width: 100%;
+    }
+
+    width: 100%;
 
     .ui-widget-header
     {
@@ -116,9 +131,16 @@ iframe
         color: #B9B9B9;
     }
 
-    .ui-tabs-selected a
+    .ui-tabs-selected 
     {
-        color: #1C94C4;
+        @color: #575858;
+        background: @color;
+        border: solid @color 1px;
+
+        a
+        {
+            color: #1C94C4;
+        }
     }
 
 
