@@ -11,7 +11,9 @@ use Doctrine\ORM\EntityManager,
     Stats\Component\Csv\Parser,
     Symfony\Component\Validator\Validator,
     Stats\BankBundle\Component\Validator\AccountValidator,
-    \Stats\BankBundle\Repository\AccountStatementRepository;
+    Stats\BankBundle\Repository\AccountStatementRepository,
+    Stats\BankBundle\Model\Statistics,
+    Stats\bankBundle\Component\Date\DateRange;
     
 
 class AccountService
@@ -56,16 +58,23 @@ class AccountService
     private $repository;
     
     /**
+     * @var DateRange
+     */
+    private $range;
+    
+    /**
      * @param EntityManager $em
      * @param FormFactory $factory 
      * @param Uploader $uploader
      * @param Parser $parser
      * @param AccountValidator $validator
+     * @param DateRange $range
      */
     public function __construct(EntityManager $em, FormFactory $factory, 
                                 Uploader $uploader, Parser $parser,
                                 AccountValidator $validator,
-                                AccountStatementRepository $repository)
+                                AccountStatementRepository $repository,
+                                DateRange $range)
     {
         $this->em = $em;
         $this->formFactory = $factory;
@@ -73,6 +82,7 @@ class AccountService
         $this->parser = $parser;
         $this->validator = $validator;
         $this->repository = $repository;
+        $this->range = $range;
     }
     
     /**
@@ -99,6 +109,32 @@ class AccountService
     }
     
     /**
+     * @return AccountStatement
+     */
+    public function getHighestDeposit()
+    {
+        return $this->repository->getHighestDeposit();
+    }
+    
+    /**
+     * @return AccountStatement
+     */
+    public function getHighestWithdrawal()
+    {
+        return $this->repository->getHighestWithdrawal();
+    }    
+    
+    public function getAverageDeposit()
+    {
+        return $this->repository->getAverageDeposit();
+    }
+    
+    public function getAverageWithdrawal()
+    {
+        return $this->repository->getAverageWithdrawal();
+    }
+        
+    /**
      * @param File $file 
      */
     public function save(File $file)
@@ -122,7 +158,7 @@ class AccountService
                 $as->setEntryDate(new \DateTime($content[0]) )
                    ->setValueDate(new \DateTime($content[1]) )
                    ->setPaymentDate(new \DateTime($content[2]) )
-                   ->setAmount($content[3])
+                   ->setAmount(str_replace(',', '.', $content[3]) )
                    ->setReceiver($content[4])
                    ->setAccountNumber($content[5])
                    ->setBic($content[6])
@@ -147,6 +183,29 @@ class AccountService
         
         $this->em->flush();
         $this->em->commit();
+    }
+    
+    /**
+     * @param int $month
+     * @param int $year
+     * @return array|null
+     */
+    public function getStatisticsForPeriod(\DateTime $start, \DateTime $end)
+    {
+        $results = $this->repository->getStatisticsForPeriod($start, $end);
+        
+        if($results == null || count($results) == 0)
+        {
+            return null;
+        }
+        
+        $statistics = new Statistics($results);
+        $results['daily_spending'] = $this->repository->getDailySpendingForPeriod($start, $end);
+        $results['average_daily_spending'] = $statistics->calculateAverageDailySpending();
+        $results['difference'] = $statistics->calculateDifference();
+        $results['top_expenses'] = $this->repository->getHighestWithdrawals(5, $start, $end);
+        
+        return $results;
     }
     
     /**

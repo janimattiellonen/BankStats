@@ -1,7 +1,7 @@
 services:
     stats_bank.service.account:
         class:  Stats\BankBundle\Service\AccountService
-        arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@stats.service.upload", "@stats.component.parser", "@stats.accountValidator", "@stats.repository.accountStatement"]
+        arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@stats.service.upload", "@stats.component.parser", "@stats.accountValidator", "@stats.repository.accountStatement", "@stats.component.dateRange"]
     stats.service.upload:
         class:  Stats\BankBundle\Service\Uploader
         arguments: ["%upload_dir%"]
@@ -11,6 +11,9 @@ services:
         arguments: [Stats\BankBundle\Entity\AccountStatement]
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
+    
+    stats.component.dateRange:
+        class:  Stats\BankBundle\Component\Date\DateRange
         
     stats.component.parser:
         class:  Stats\Component\Csv\Parser

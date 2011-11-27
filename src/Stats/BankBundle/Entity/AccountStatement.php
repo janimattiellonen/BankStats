@@ -115,7 +115,7 @@ class AccountStatement
     /**
      * @var string 
      * 
-     * @ORM\Column(name="receipt", type="string", length="5")
+     * @ORM\Column(name="receipt", type="string", length=5)
      */    
     protected $receipt;
     

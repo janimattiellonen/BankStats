@@ -1,0 +1,95 @@
+{% extends 'StatsBankBundle::layout.html.twig' %}
+
+{% block content %}
+    
+    <h1>{{'Statistics for'|trans}} {{month|trans}}, {{year}}</h1>
+    
+    <div id="chart_div"></div>
+    
+        
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">{{'Overview'|trans}}</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <th>{{'Date'|trans}}</th> 
+                <td>{{month|trans}}, {{ year }}</td>
+            </tr>    
+            <tr>
+                <th>{{'Deposits'|trans}}</th>
+                <td>{{stats.deposits}}&euro;</td>
+            </tr> 
+            <tr>
+                <th>{{'Withdrawals'|trans}}</th>
+                <td>{{stats.withdrawals}}&euro;</td>
+            </tr>           
+            <tr>
+                <th>{{'Difference'|trans}}</th>
+                <td>{{stats.difference}}&euro;</td>
+            </tr>           
+            <tr>
+                <th>{{'Average daily spending'|trans}}</th>
+                <td>{{stats.average_daily_spending}}&euro;</td>
+            </tr>
+        
+        
+        </tbody>
+        
+        <thead></thead>
+    </table>    
+        
+        
+    <h2>{{ 'Biggest expenses this month'|trans }}</h2>    
+    
+    <table>
+    {% for expense in stats.top_expenses %}
+        <thead>    
+            <tr>        
+                <th colspan="2">{{expense.receiver}}</h3>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>{{'Amount'|trans}}:</th><td>{{expense.amount}}</td>
+            </tr>
+            <tr>
+                <th>{{'Date'|trans}}:</th><td>{{expense.entryDate|date('d.m.Y')}}</td>
+            </tr>
+            <tr>
+                <th>{{'Event'|trans}}:</th><td>{{expense.event}}</td>
+            </tr>
+        </tbody> 
+            
+    {% endfor %}
+    </table>
+        
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages:["corechart"] });
+        google.setOnLoadCallback(drawChart);
+        
+        function drawChart() 
+        {
+            var data = new google.visualization.DataTable();
+            
+            data.addColumn('string', 'Day');
+            data.addColumn('number', 'Spending');
+            data.addRows({{stats.daily_spending|length}});
+
+            {% for spending in stats.daily_spending %}
+                data.setValue({{loop.index - 1}}, 0, '{{spending.day}}');
+                data.setValue({{loop.index - 1}}, 1, {{spending.amount}});
+            {% endfor %}        
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            
+            chart.draw(data, {colors: ['gray'],width: 800, height: 400, title: 'Daily spending', backgroundColor: "#e8e8e8", hAxis: {maxAlternation: 1}});
+        }
+    </script>
+
+    
+{% endblock %}
