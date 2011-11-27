@@ -5,9 +5,15 @@
     <h1>{{'Statistics for'|trans}} {{month|trans}}, {{year}}</h1>
     
     {{ stats_date_controller(date) }}
+
+    <div id="in-out">
+        <div class="in balance">{{stats.deposits}}&euro;</div>
+        <div class="out balance">{{stats.withdrawals}}&euro;</div>
+    </div>
     
     <div id="chart_div"></div>
-        
+
+    
     <table>
         <thead>
             <tr>
@@ -80,7 +86,7 @@
         {% for expense in stats.all_expenses %}
             <thead>    
                 <tr>        
-                    <th colspan="2">{{expense.receiver}}</h3>
+                    <th colspan="2">{{expense.receiver}}&nbsp;</h3>
                 </tr>
             </thead>
             <tbody>

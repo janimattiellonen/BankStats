@@ -61,3 +61,46 @@ iframe
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+#in-out
+{
+    width: 58%;
+    border: solid #E1E1E1 1px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background: #E1E1E1;
+    float: left;
+
+    .balance
+    {
+        border-radius: 15px;
+        padding: 10px;
+        width: 46%;
+        float: left;
+        text-align: center;
+    }
+
+    .in
+    {
+        @color: #41ba63;
+
+        border: solid @color 1px;
+        background: @color;
+        margin-right: 10px;
+    }
+
+    .out
+    {
+        @color: red;
+        border: solid @color 1px;
+        background: @color;
+
+    }
+
+}
+
+#tabs
+{
+    width: 60%;
+}
