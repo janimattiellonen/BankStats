@@ -45,10 +45,18 @@ class StatsController extends Controller
         
         $monthly = $this->getAccountService()->getStatisticsForPeriod($start, $end);
         
+        if(!isset($monthly) )
+        {
+            return $this->render('StatsBankBundle:Stats:no-stats.html.twig', array(
+                'date' => $range->withFirstDay(date('m'), date('Y') )
+            ));
+        }
+        
         return $this->render('StatsBankBundle:Stats:monthly.html.twig', array(
             'stats' => $monthly,
             'month' => date('F', $start->getTimestamp() ),
             'year' => $year,
+            'date' => $start, 
         ) );  
     }
     

@@ -21,3 +21,9 @@ services:
     stats.accountValidator:
         class: Stats\BankBundle\Component\Validator\AccountValidator
         arguments: ["@validator"]
+    dateController.twig.extension:
+        class: Stats\BankBundle\Twig\Extensions\Date
+        arguments: ["@twig"]
+        tags:
+            - {name: twig.extension}
+      

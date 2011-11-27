@@ -1,0 +1,6 @@
+<div class="date-controller">
+    <a href="{{ path('stats_stats_list', {'year': previous|date('Y'), 'month': previous|date('n')}) }}">{{'Previous month'|trans}}</a>
+        
+    <a href="{{ path('stats_stats_list', {'year': next|date('Y'), 'month': next|date('n')}) }}">{{'Next month'|trans}}</a>
+        
+</div>
