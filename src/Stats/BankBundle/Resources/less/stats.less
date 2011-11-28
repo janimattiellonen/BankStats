@@ -89,33 +89,46 @@ iframe
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 15px;
-    background: #E1E1E1;
+    background: #B9B9B9;
+
     float: left;
 
     .balance
     {
+        @color: #3b3c3c;
+        color: white;
+        border: solid @color 1px;
+        background: @color;
+        display: inline-block;
         border-radius: 15px;
         padding: 10px;
-        width: 40%;
-        float: left;
+        width: 25%;
         text-align: center;
+        margin: 10px;
     }
 
     .in
     {
-        @color: #41ba63;
+        @color: #3b3c3c;
 
         border: solid @color 1px;
         background: @color;
         margin-right: 10px;
     }
 
-    .out
+ 
+    .positive
     {
-        @color: red;
+        @color: #41ba63;
         border: solid @color 1px;
         background: @color;
+    }
 
+    .negative
+    {
+        @color: #b53827;
+        border: solid @color 1px;
+        background: @color;
     }
 
 }

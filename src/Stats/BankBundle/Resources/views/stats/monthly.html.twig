@@ -7,8 +7,9 @@
     {{ stats_date_controller(date) }}
 
     <div id="in-out">
-        <div class="in balance">{{stats.deposits}}&euro;</div>
-        <div class="out balance">{{stats.withdrawals}}&euro;</div>
+        <span class="in balance">{{stats.deposits}}&euro;</span> -
+        <span class="out balance">{{stats.withdrawals * -1}}&euro;</span> = 
+        <span class="{% if stats.deposits + stats.withdrawals < 0 %} negative {% else %} positive {% endif %} balance">{{stats.deposits + stats.withdrawals}}&euro;</span>
     </div>
     
     <div id="chart_div"></div>
