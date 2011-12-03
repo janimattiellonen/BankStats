@@ -222,7 +222,7 @@ class AccountService
                 new \DateTime($data[0]),
                 new \DateTime($data[1]),
                 new \DateTime($data[2]),
-                $data[3],
+                str_replace(',', '.', $data[3]),
                 $data[4]
         );
     }

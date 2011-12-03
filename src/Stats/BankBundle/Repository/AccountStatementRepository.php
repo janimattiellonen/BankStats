@@ -45,9 +45,13 @@ class AccountStatementRepository extends EntityRepository
         
         try
         {
-            $qb->getQuery()->getSingleResult();
+            $result = $qb->getQuery()->getResult();
             
-            return true;
+            return count($result) != 0;
+        }
+        catch(NonUniqueResultException $e)
+        {
+            return false;
         }
         catch(NoResultException $e)
         {
