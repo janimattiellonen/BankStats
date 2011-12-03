@@ -17,7 +17,7 @@ class DateRange
     {
         $this->checkMonth($month);
         
-        return new \DateTime("2011-$month-01");
+        return new \DateTime("$year-$month-01");
     }
     
     /**
