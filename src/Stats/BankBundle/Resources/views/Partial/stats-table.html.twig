@@ -1,0 +1,21 @@
+<table>
+{% for row in data %}
+    <thead>    
+        <tr>        
+            <th colspan="2">{{row.receiver}}</h3>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>{{'Amount'|trans}}:</th><td>{{row.amount}}</td>
+        </tr>
+        <tr>
+            <th>{{'Date'|trans}}:</th><td>{{row.entryDate|date('d.m.Y')}}</td>
+        </tr>
+        <tr>
+            <th>{{'Event'|trans}}:</th><td>{{row.event}}</td>
+        </tr>
+    </tbody> 
+
+{% endfor %}
+</table>

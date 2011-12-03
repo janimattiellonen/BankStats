@@ -55,54 +55,16 @@
     <ul>
         <li><a href="#tabs-1">{{ 'Biggest expenses this month'|trans }}</a></li>
         <li><a href="#tabs-2">{{ 'All expenses this month'|trans }}</a></li>
+        <li><a href="#tabs-3">{{ 'All incomes this month'|trans }}</a></li>
     </ul>
     <div id="tabs-1">
-
-        <table>
-        {% for expense in stats.top_expenses %}
-            <thead>    
-                <tr>        
-                    <th colspan="2">{{expense.receiver}}</h3>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>{{'Amount'|trans}}:</th><td>{{expense.amount}}</td>
-                </tr>
-                <tr>
-                    <th>{{'Date'|trans}}:</th><td>{{expense.entryDate|date('d.m.Y')}}</td>
-                </tr>
-                <tr>
-                    <th>{{'Event'|trans}}:</th><td>{{expense.event}}</td>
-                </tr>
-            </tbody> 
-
-        {% endfor %}
-        </table>
-
+        {% include 'StatsBankBundle:Partial:stats-table.html.twig' with {"data": stats.top_expenses} %}
     </div>
     <div id="tabs-2">
-        <table>
-        {% for expense in stats.all_expenses %}
-            <thead>    
-                <tr>        
-                    <th colspan="2">{{expense.receiver}}&nbsp;</h3>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>{{'Amount'|trans}}:</th><td>{{expense.amount}}</td>
-                </tr>
-                <tr>
-                    <th>{{'Date'|trans}}:</th><td>{{expense.entryDate|date('d.m.Y')}}</td>
-                </tr>
-                <tr>
-                    <th>{{'Event'|trans}}:</th><td>{{expense.event}}</td>
-                </tr>
-            </tbody> 
-
-        {% endfor %}
-        </table>
+        {% include 'StatsBankBundle:Partial:stats-table.html.twig' with {"data": stats.all_expenses} %}
+    </div>
+    <div id="tabs-3">
+        {% include 'StatsBankBundle:Partial:stats-table.html.twig' with {"data": stats.all_incomes} %}
     </div>
 </div>
 

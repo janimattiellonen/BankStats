@@ -205,6 +205,7 @@ class AccountService
         $results['difference'] = $statistics->calculateDifference();
         $results['top_expenses'] = $this->repository->getHighestWithdrawals(5, $start, $end);
         $results['all_expenses'] = $this->repository->getWithdrawalsFor($start, $end);
+        $results['all_incomes'] = $this->repository->getDepositsFor($start, $end);
         
         return $results;
     }
