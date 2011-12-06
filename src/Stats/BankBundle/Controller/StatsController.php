@@ -6,10 +6,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\RedirectResponse,
     Stats\BankBundle\Entity\AccountStatement,
     Stats\BankBundle\Service\AccountService,
-    \Stats\BankBundle\Component\Date\DateRange;
+    Stats\BankBundle\Component\Date\DateRange;
 
 class StatsController extends Controller
 {
+    public function newAction()
+    {
+        $service = $this->getAccountService();
+        
+        return $this->render('StatsBankBundle:stats:edit.html.twig', array(
+            'form' => $service->getAccountStatementForm(new AccountStatement)->createView()
+        ));
+    }
+    
+    public function saveAction()
+    {
+        $service = $this->getAccountService();
+        $form = $service->getAccountStatementForm(new AccountStatement() );
+        
+        if($form->bindRequest($this->getRequest() )->isValid() )
+        {
+            $service->saveAcctountStatementByForm($form);
+            return $this->redirect($this->generateUrl('stats_stats_list') );
+        }
+        else
+        {
+            return $this->render('StatsBankBundle:stats:edit.html.twig', array(
+                'form' => $form->createView()
+            ));
+        }
+    }
+    
     public function listAction()
     {
         $service = $this->getAccountService();
@@ -21,7 +48,7 @@ class StatsController extends Controller
         $averageDeposit = $service->getAverageDeposit();
         
         
-        return $this->render('StatsBankBundle:Stats:list.html.twig', array(
+        return $this->render('StatsBankBundle:stats:list.html.twig', array(
             'highestDeposit' => $highestDeposit,
             'highestWithdrawal' => $highestWithdrawal,
         ));
@@ -47,12 +74,12 @@ class StatsController extends Controller
         
         if(!isset($monthly) )
         {
-            return $this->render('StatsBankBundle:Stats:no-stats.html.twig', array(
+            return $this->render('StatsBankBundle:stats:no-stats.html.twig', array(
                 'date' => $range->withFirstDay(date('m'), date('Y') )
             ));
         }
         
-        return $this->render('StatsBankBundle:Stats:monthly.html.twig', array(
+        return $this->render('StatsBankBundle:stats:monthly.html.twig', array(
             'stats' => $monthly,
             'month' => date('F', $start->getTimestamp() ),
             'year' => $year,
@@ -75,10 +102,10 @@ class StatsController extends Controller
     
     public function selectFileAction()
     {
-        $service = $this->container->get('stats_bank.service.account');
+        $service = $this->getAccountService();
         
-        return $this->render('StatsBankBundle:Stats:select-file.html.twig', array(
-            'form' => $service->getAccountStatementForm()->createView()
+        return $this->render('StatsBankBundle:stats:select-file.html.twig', array(
+            'form' => $service->getAttachmentForm()->createView()
         ));
     }
     

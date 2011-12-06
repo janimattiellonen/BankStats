@@ -25,6 +25,7 @@ class AccountStatement
      * 
      * @ORM\Column(name="entry_date", type="date")
      * @Assert\Date()
+     * @Assert\NotNull()
      */
     protected $entryDate;
     
@@ -34,6 +35,7 @@ class AccountStatement
      * 
      * @ORM\Column(name="value_date", type="date")
      * @Assert\Date()
+     * @Assert\NotNull()
      */    
     protected $valueDate;
     
@@ -43,6 +45,7 @@ class AccountStatement
      * 
      * @ORM\Column(name="payment_date", type="date")
      * @Assert\Date()
+     * @Assert\NotNull()
      */    
     protected $paymentDate;
     
@@ -50,6 +53,7 @@ class AccountStatement
      * @var float
      * 
      * @ORM\Column(name="amount", type="decimal", precision=10, scale=2) 
+     * @Assert\NotNull()
      */
     protected $amount;
     
@@ -57,13 +61,14 @@ class AccountStatement
      * @var string
      * 
      * @ORM\Column(name="receiver", type="string", length=128)
+     * @Assert\NotNull()
      */
     protected $receiver;
     
     /**
      * @var string 
      * 
-     * @ORM\Column(name="account_number", type="string", length=128)
+     * @ORM\Column(name="account_number", type="string", length=128, nullable=true)
      */
     protected $accountNumber;
     
@@ -80,6 +85,7 @@ class AccountStatement
      * @var string 
      * 
      * @ORM\Column(name="event", type="string", length=128)
+     * @Assert\NotNull()
      */    
     protected $event;
     

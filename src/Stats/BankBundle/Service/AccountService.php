@@ -5,6 +5,7 @@ use Doctrine\ORM\EntityManager,
     Symfony\Component\Form\FormFactory,
     Symfony\Component\Form\Form,
     Stats\BankBundle\Entity\AccountStatement,
+    Stats\BankBundle\Form\AttachmentType,
     Stats\BankBundle\Form\AccountStatementType,
     Symfony\Component\HttpFoundation\File\File,
     Symfony\Component\HttpFoundation\File\UploadedFile,
@@ -89,11 +90,18 @@ class AccountService
      *
      * @return Form
      */
-    public function getAccountStatementForm()
+    public function getAttachmentForm()
     {
-        return $this->formFactory->createBuilder('form')
-                ->add('attachment', 'file')
-                ->getForm();
+        return $this->formFactory->createBuilder(new AttachmentType() )->getForm();
+    }
+    
+    /**
+     * @param AccountStatement $accountStatement
+     * @return Form
+     */
+    public function getAccountStatementForm(AccountStatement $accountStatement)
+    {
+        return $this->formFactory->create(new AccountStatementType(get_class($accountStatement) ), $accountStatement);
     }
     
     /**
@@ -133,7 +141,24 @@ class AccountService
     {
         return $this->repository->getAverageWithdrawal();
     }
-        
+     
+    /**
+     * @param Form $form 
+     */
+    public function saveAcctountStatementByForm(Form $form)
+    {
+        $this->saveAccountStatement($form->getData() );
+    }
+    
+    /**
+     * @param AccountStatement $accountStatement 
+     */
+    public function saveAccountStatement(AccountStatement $accountStatement)
+    {
+        $this->em->persist($accountStatement);
+        $this->em->flush();
+    }
+    
     /**
      * @param File $file 
      */
