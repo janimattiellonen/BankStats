@@ -89,15 +89,13 @@ class StatsController extends Controller
     
     public function uploadAction()
     {
-        $request = $this->getRequest();
-        
-        $uploadedFile = $request->files->get('form');
-        
         $service = $this->container->get('stats_bank.service.account');
+        $request = $this->getRequest();
+        $data = $request->files->get('stats_bankbundle_attachmenttype');
         
-        $service->processFile($uploadedFile['attachment']);
+        $service->processFile($data['attachment']);
         
-        return $this->render('StatsBankBundle:Stats:uploaded.html.twig');
+        return $this->render('StatsBankBundle:stats:uploaded.html.twig');
     }
     
     public function selectFileAction()
