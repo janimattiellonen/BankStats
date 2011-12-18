@@ -11,6 +11,9 @@ stats_stats_list:
     pattern: /stats/list
     defaults: { _controller: "StatsBankBundle:Stats:list" }
 
+stats_stats_default:
+    pattern: /stats
+    defaults: { _controller: "StatsBankBundle:Stats:monthly", year: "now", month: "now" }  
     
 stats_stats_list_partial:
     pattern: /stats/list/monthly/
