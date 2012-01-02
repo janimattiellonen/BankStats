@@ -1,7 +1,27 @@
-stats_stats_list:
-    pattern: /stats
-    defaults: { _controller: "StatsBankBundle:Stats:list" }
+stats_stats_new:
+    pattern: /stats/new
+    defaults: { _controller: "StatsBankBundle:Stats:new" }
+
+stats_stats_save:
+    pattern: /stats/save
+    defaults: { _controller: "StatsBankBundle:Stats:save" }
+    requirements: { _method: post }    
     
+stats_stats_list:
+    pattern: /stats/list
+    defaults: { _controller: "StatsBankBundle:Stats:list" }
+
+stats_stats_default:
+    pattern: /stats
+    defaults: { _controller: "StatsBankBundle:Stats:monthly", year: "now", month: "now" }  
+    
+stats_stats_list_partial:
+    pattern: /stats/list/monthly/
+    defaults: { _controller: "StatsBankBundle:Stats:monthly"}     
+    
+stats_stats_list:
+    pattern: /stats/list/monthly/{month}/{year}
+    defaults: { _controller: "StatsBankBundle:Stats:monthly", year: "now", month: "now" }    
     
 stats_stats_upload_file:
     pattern: /stats/upload
@@ -12,3 +32,7 @@ stats_stats_select_file:
     pattern: /stats/select-file
     defaults: { _controller: "StatsBankBundle:Stats:selectFile" }    
     requirements: { _method: get }    
+    
+stats_error_exception:
+    pattern: /error
+    defaults: { _controller: "StatsBankBundle:Error:exception" }

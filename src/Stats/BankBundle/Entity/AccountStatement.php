@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM,
 
 /**
  * @ORM\Table(name="accountstatement")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Stats\BankBundle\Repository\AccountStatementRepository")
  */
 class AccountStatement
 {
@@ -24,6 +24,8 @@ class AccountStatement
      * @var DateTime
      * 
      * @ORM\Column(name="entry_date", type="date")
+     * @Assert\Date()
+     * @Assert\NotNull()
      */
     protected $entryDate;
     
@@ -32,6 +34,8 @@ class AccountStatement
      * @var DateTime
      * 
      * @ORM\Column(name="value_date", type="date")
+     * @Assert\Date()
+     * @Assert\NotNull()
      */    
     protected $valueDate;
     
@@ -40,6 +44,8 @@ class AccountStatement
      * @var DateTime
      * 
      * @ORM\Column(name="payment_date", type="date")
+     * @Assert\Date()
+     * @Assert\NotNull()
      */    
     protected $paymentDate;
     
@@ -47,6 +53,7 @@ class AccountStatement
      * @var float
      * 
      * @ORM\Column(name="amount", type="decimal", precision=10, scale=2) 
+     * @Assert\NotNull()
      */
     protected $amount;
     
@@ -54,13 +61,14 @@ class AccountStatement
      * @var string
      * 
      * @ORM\Column(name="receiver", type="string", length=128)
+     * @Assert\NotNull()
      */
     protected $receiver;
     
     /**
      * @var string 
      * 
-     * @ORM\Column(name="account_number", type="string", length=128)
+     * @ORM\Column(name="account_number", type="string", length=128, nullable=true)
      */
     protected $accountNumber;
     
@@ -74,9 +82,10 @@ class AccountStatement
     
     
     /**
-     * @var tystringpe 
+     * @var string 
      * 
      * @ORM\Column(name="event", type="string", length=128)
+     * @Assert\NotNull()
      */    
     protected $event;
     
@@ -112,7 +121,7 @@ class AccountStatement
     /**
      * @var string 
      * 
-     * @ORM\Column(name="receipt", type="string", length="5")
+     * @ORM\Column(name="receipt", type="string", length=5)
      */    
     protected $receipt;
     
@@ -121,6 +130,9 @@ class AccountStatement
         return $this->id;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getEntryDate()
     {
         return $this->entryDate;
@@ -129,8 +141,13 @@ class AccountStatement
     public function setEntryDate($entryDate)
     {
         $this->entryDate = $entryDate;
+        
+        return $this;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getValueDate()
     {
         return $this->valueDate;
@@ -139,8 +156,13 @@ class AccountStatement
     public function setValueDate($valueDate)
     {
         $this->valueDate = $valueDate;
+        
+        return $this;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getPaymentDate()
     {
         return $this->paymentDate;
@@ -149,6 +171,8 @@ class AccountStatement
     public function setPaymentDate($paymentDate)
     {
         $this->paymentDate = $paymentDate;
+        
+        return $this;
     }
 
     public function getAmount()
@@ -159,6 +183,8 @@ class AccountStatement
     public function setAmount($amount)
     {
         $this->amount = $amount;
+        
+        return $this;
     }
 
     public function getReceiver()
@@ -169,6 +195,8 @@ class AccountStatement
     public function setReceiver($receiver)
     {
         $this->receiver = $receiver;
+        
+        return $this;
     }
 
     public function getAccountNumber()
@@ -179,6 +207,8 @@ class AccountStatement
     public function setAccountNumber($accountNumber)
     {
         $this->accountNumber = $accountNumber;
+        
+        return $this;
     }
 
     public function getBic()
@@ -189,6 +219,8 @@ class AccountStatement
     public function setBic($bic)
     {
         $this->bic = $bic;
+        
+        return $this;
     }
 
     public function getEvent()
@@ -199,6 +231,8 @@ class AccountStatement
     public function setEvent($event)
     {
         $this->event = $event;
+        
+        return $this;
     }
 
     public function getReferenceNumber()
@@ -209,6 +243,8 @@ class AccountStatement
     public function setReferenceNumber($referenceNumber)
     {
         $this->referenceNumber = $referenceNumber;
+        
+        return $this;
     }
 
     public function getPayerReferenceNumber()
@@ -219,6 +255,8 @@ class AccountStatement
     public function setPayerReferenceNumber($payerReferenceNumber)
     {
         $this->payerReferenceNumber = $payerReferenceNumber;
+        
+        return $this;
     }
 
     public function getMessage()
@@ -229,6 +267,8 @@ class AccountStatement
     public function setMessage($message)
     {
         $this->message = $message;
+        
+        return $this;
     }
 
     public function getCardNumber()
@@ -239,6 +279,8 @@ class AccountStatement
     public function setCardNumber($cardNumber)
     {
         $this->cardNumber = $cardNumber;
+        
+        return $this;
     }
 
     public function getReceipt()
@@ -249,5 +291,7 @@ class AccountStatement
     public function setReceipt($receipt)
     {
         $this->receipt = $receipt;
+        
+        return $this;
     }
 }

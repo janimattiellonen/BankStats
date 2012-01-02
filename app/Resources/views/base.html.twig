@@ -11,13 +11,29 @@
         {% endstylesheets %}
         
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link type="text/css" href="/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
     </head>
     <body>
-        {% block container %}{% endblock %}
-
+        <nav>
+            <ul>
+                <li><a href="{{path('stats_stats_list') }}">{{'Current month'|trans}}</a></li>
+                <li><a href="{{path('stats_stats_select_file') }}">{{'Upload new statistics'|trans}}</a></li>
+                <li><a href="{{path('stats_stats_new') }}">{{'Add manually'|trans}}</a></li>
+            </ul>
+        </nav>
+        
+        <div id="main">
+            {% block container %}{% endblock %}
+        </div>
+            
         <script src="/js/jquery/jquery-1.6.2.min.js"></script>
         <script src="/js/jquery/jquery-ui-1.8.16.min.js"></script>
-
+        <script src="/js/jquery/jquery.mtz.monthpicker.js"></script>
+        
+        <script type="text/javascript">
+            var statsUrl = '{{path('stats_stats_list_partial')}}';
+        </script>    
+        
         {% javascripts output="/js/main.js" filter="coffee,?yui_js"
             '@StatsBankBundle/Resources/coffee/stats.coffee'
         %}

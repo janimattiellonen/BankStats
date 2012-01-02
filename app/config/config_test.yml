@@ -12,3 +12,9 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+parameters:
+    exception_listener.controller: "StatsBundex:Exception:exception"
+    
+    
+parameters:
+    upload_dir: %kernel.root_dir%/../data/uploads/temp    

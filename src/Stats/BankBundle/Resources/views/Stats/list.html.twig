@@ -1,5 +1,16 @@
 {% extends 'StatsBankBundle::layout.html.twig' %}
 
 {% block content %}
-    Hello
+    
+    <h1>{{ 'All time'|trans }}
+
+    <h2>{{ 'Highest deposit' }}</h2>
+    
+    {{ highestDeposit.entryDate|date('d.m.Y') }}: {{ highestDeposit.amount }} - {{ highestDeposit.receiver }} - {{ highestDeposit.event }}
+    
+    <h2>{{ 'Highest withdrawal' }}</h2>
+    
+    {{ highestWithdrawal.entryDate|date('d.m.Y') }}: {{ highestWithdrawal.amount }} - {{ highestWithdrawal.receiver }} - {{ highestWithdrawal.event }}
+    
+    <h1>{{ 'Annual'|trans }}
 {% endblock %}
