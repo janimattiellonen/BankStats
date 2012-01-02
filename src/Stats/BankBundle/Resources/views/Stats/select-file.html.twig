@@ -1,5 +1,16 @@
 {% extends 'StatsBankBundle::layout.html.twig' %}
 
 {% block content %}
-    Select file
+    <h1>{{'Select file'|trans}}</h1>
+    
+    <form action="{{ path('stats_stats_upload_file') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+
+    {{ form_row(form.attachment) }}
+
+    {{ form_rest(form) }}
+
+    <input type="submit" />
+</form>
+    
 {% endblock %}
