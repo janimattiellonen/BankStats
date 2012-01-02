@@ -1,0 +1,102 @@
+{% extends 'StatsBankBundle::layout.html.twig' %}
+
+{% block content %}
+    
+    <h1>{{'Statistics for'|trans}} {{month|trans}}, {{year}}</h1>
+    
+    {{ stats_date_controller(date) }}
+
+    <div id="in-out">
+        <span class="in balance">{{stats.deposits}}&euro;</span> -
+        <span class="out balance">{{stats.withdrawals * -1}}&euro;</span> = 
+        <span class="{% if stats.deposits + stats.withdrawals < 0 %} negative {% else %} positive {% endif %} balance">{{stats.deposits + stats.withdrawals}}&euro;</span>
+    </div>
+    
+    <div id="chart_div"></div>
+
+    <table class="overview">
+        <thead>
+            <tr>
+                <th colspan="2">{{'Overview'|trans}}</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <th>{{'Date'|trans}}</th> 
+                <td>{{month|trans}}, {{ year }}</td>
+            </tr>    
+            <tr>
+                <th>{{'Deposits'|trans}}</th>
+                <td>{{stats.deposits}}&euro;</td>
+            </tr> 
+            <tr>
+                <th>{{'Withdrawals'|trans}}</th>
+                <td>{{stats.withdrawals}}&euro;</td>
+            </tr>           
+            <tr>
+                <th>{{'Difference'|trans}}</th>
+                <td>{{stats.difference}}&euro;</td>
+            </tr>           
+            <tr>
+                <th>{{'Average daily spending'|trans}}</th>
+                <td>{{stats.average_daily_spending}}&euro;</td>
+            </tr>
+        
+        
+        </tbody>
+        
+        <thead></thead>
+    </table>    
+        
+        
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">{{ 'Biggest expenses this month'|trans }}</a></li>
+        <li><a href="#tabs-2">{{ 'All expenses this month'|trans }}</a></li>
+        <li><a href="#tabs-3">{{ 'All incomes this month'|trans }}</a></li>
+    </ul>
+    <div id="tabs-1">
+        {% include 'StatsBankBundle:Partial:stats-table.html.twig' with {"data": stats.top_expenses} %}
+    </div>
+    <div id="tabs-2">
+        {% include 'StatsBankBundle:Partial:stats-table.html.twig' with {"data": stats.all_expenses} %}
+    </div>
+    <div id="tabs-3">
+        {% include 'StatsBankBundle:Partial:stats-table.html.twig' with {"data": stats.all_incomes} %}
+    </div>
+</div>
+
+{{ stats_date_controller(date) }}    
+    
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages:["corechart"] });
+        google.setOnLoadCallback(drawChart);
+        
+        function drawChart() 
+        {
+            var data = new google.visualization.DataTable();
+            
+            data.addColumn('string', 'Day');
+            data.addColumn('number', 'Spending');
+            data.addRows({{stats.daily_spending|length}});
+
+            {% for spending in stats.daily_spending %}
+                data.setValue({{loop.index - 1}}, 0, '{{spending.day}}');
+                data.setValue({{loop.index - 1}}, 1, {{spending.amount}});
+            {% endfor %}        
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            
+            chart.draw(data, {colors: ['#1C94C4'],width: "100%", height: 200, title: 'Daily spending', backgroundColor: "#e8e8e8", vAxis: {logScale: true}, hAxis: {maxAlternation: 1}});
+        }
+    </script>
+
+    
+    
+    
+    
+{% endblock %}
+    

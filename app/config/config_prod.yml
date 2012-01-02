@@ -17,3 +17,7 @@ monolog:
             type:  stream
             path:  %kernel.logs_dir%/%kernel.environment%.log
             level: debug
+
+parameters:
+    upload_dir:
+        %kernel.root_dir%/../data/uploads/temp
