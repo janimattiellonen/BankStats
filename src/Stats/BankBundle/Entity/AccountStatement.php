@@ -76,7 +76,7 @@ class AccountStatement
     /**
      * @var string 
      * 
-     * @ORM\Column(name="bic", type="string", length=128)
+     * @ORM\Column(name="bic", type="string", length=128, nullable=true)
      */
     protected $bic;
     
@@ -93,14 +93,14 @@ class AccountStatement
     /**
      * @var string 
      * 
-     * @ORM\Column(name="reference_number", type="string", length=128)
+     * @ORM\Column(name="reference_number", type="string", length=128, nullable=true)
      */    
     protected $referenceNumber;
     
     /**
      * @var string 
      * 
-     * @ORM\Column(name="payment_reference_number", type="string", length=128)
+     * @ORM\Column(name="payment_reference_number", type="string", length=128, nullable=true)
      */    
     protected $payerReferenceNumber;
     
@@ -114,14 +114,14 @@ class AccountStatement
     /**
      * @var string 
      * 
-     * @ORM\Column(name="card_number", type="string", length=64)
+     * @ORM\Column(name="card_number", type="string", length=64, nullable=true)
      */        
     protected $cardNumber;
     
     /**
      * @var string 
      * 
-     * @ORM\Column(name="receipt", type="string", length=5)
+     * @ORM\Column(name="receipt", type="string", length=5, nullable=true)
      */    
     protected $receipt;
     
