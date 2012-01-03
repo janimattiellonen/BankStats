@@ -1,0 +1,170 @@
+body {
+  background: #f8f8f8;
+  margin: 20px;
+}
+nav {
+  float: left;
+  width: 93%;
+  margin: 5px 20px 20px 20px;
+  border-radius: 15px 15px 15px 15px;
+  background: #3B3C3C;
+}
+nav ul li {
+  list-style-type: none;
+  display: inline;
+  margin-right: 10px;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+nav ul li a:hover {
+  text-decoration: underline;
+}
+#main {
+  float: left;
+  width: 90%;
+  margin: 5px 20px 20px 20px;
+  border-radius: 15px;
+  background: #e1e1e1;
+  padding: 20px;
+}
+th {
+  text-align: left;
+}
+h1 {
+  font-size: 1.4em;
+}
+h2 {
+  font-size: 1.2em;
+}
+h3 {
+  font-size: 1em;
+}
+table {
+  width: 100%;
+  border: 1px solid #999;
+  margin-bottom: 20px;
+  background: #e6e6e6;
+}
+table thead tr th {
+  background: #b9b9b9;
+}
+table tbody tr:nth-child(odd) {
+  background: #e1e1e1;
+}
+table tbody tr:nth-child(even) {
+  background: #e9e9e9;
+}
+table th, table td {
+  padding: 5px;
+}
+table.overview th {
+  width: 25%;
+}
+iframe {
+  border: solid 1px #b9b9b9;
+}
+.date-controller {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#in-out {
+  width: 58%;
+  border: solid #E1E1E1 1px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  background: #B9B9B9;
+  float: left;
+}
+#in-out .balance {
+  color: white;
+  border: solid #3b3c3c 1px;
+  background: #3b3c3c;
+  display: inline-block;
+  border-radius: 15px;
+  padding: 10px;
+  width: 25%;
+  text-align: center;
+  margin: 10px;
+}
+#in-out .in {
+  border: solid #3b3c3c 1px;
+  background: #3b3c3c;
+  margin-right: 10px;
+}
+#in-out .positive {
+  border: solid #41ba63 1px;
+  background: #41ba63;
+}
+#in-out .negative {
+  border: solid #b53827 1px;
+  background: #b53827;
+}
+#tabs {
+  width: 100%;
+}
+#tabs table {
+  width: 100%;
+}
+#tabs .ui-widget-header {
+  border: solid #b9b9b9 1px;
+  background: #b9b9b9;
+}
+#tabs .ui-state-default a {
+  color: #B9B9B9;
+}
+#tabs .ui-state-default {
+  background: #E1E1E1;
+}
+#tabs .ui-tabs-selected {
+  background: #575858;
+  border: solid #575858 1px;
+}
+#tabs .ui-tabs-selected a {
+  color: #1C94C4;
+}
+.monthpicker {
+  width: 50px;
+  margin-left: 20px;
+  margin-right: 5px;
+}
+#mtz-monthpicker > div {
+  border: solid #b9b9b9 1px;
+  background: #b9b9b9;
+}
+#account-statement-div label {
+  display: block;
+  float: left;
+  margin-right: 5px;
+  clear: both;
+  width: 157px;
+}
+#account-statement-div input[type=text], #account-statement-div textarea {
+  float: left;
+}
+#account-statement-div .ctrl {
+  float: left;
+  clear: both;
+  width: 314px;
+  margin-top: 10px;
+}
+#account-statement-div .ctrl input[type=submit] {
+  float: right;
+}
+#account-statement-div textarea {
+  width: 153px;
+}
+#account-statement-div form > div {
+  float: left;
+  clear: both;
+  padding: 2px;
+}
+#account-statement-div form > div ul {
+  float: right;
+  margin: 0;
+  list-style-type: none;
+  color: red;
+}
