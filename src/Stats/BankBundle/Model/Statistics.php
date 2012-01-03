@@ -15,6 +15,16 @@ class Statistics
      */
     public function __construct(array $data = array() )
     {
+        if(!isset($data['withdrawals']) )
+        {
+            $data['withdrawals'] = 0;
+        }
+        
+        if(!isset($data['deposits']) )
+        {
+            $data['deposits'] = 0;
+        }
+        
         $this->data = $data;
     }
 
