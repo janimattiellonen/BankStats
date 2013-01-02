@@ -10,5 +10,5 @@ node_modules
 /web/css/*
 /web/css/!jquery-ui
 /web/js/*
-data
+/data
 .DS_Store
