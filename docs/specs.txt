@@ -1,0 +1,34 @@
+average deposit: current year, current month
+average withdrawal: current year, current month
+highest deposit: current year, current month
+highest withdrawal: current year, current month
+
+suurimmat ostokset / kk
+keskimääräinen päivittäinen rahankäyttö / kk
+tilin saldo kuukauden lopussa
+kuukausittainen rahan käyttö
+
+Näkymät:
+- päivittäinen
+- kuukausittainen
+- viikottainen
+- vuotuinen
+
+
+
+SELECT
+	MONTH(entry_date) AS month1,
+	YEAR(entry_date) AS year1,
+	CONCAT(MONTH(entry_date),'.', YEAR(entry_date) ) AS date,
+	(SELECT SUM(amount) FROM accountstatement WHERE amount < 0 AND YEAR(entry_date) = year1 AND month(entry_date) = month1) AS 'withdrawals',
+	(SELECT SUM(amount) FROM accountstatement WHERE amount > 0 AND YEAR(entry_date) = year1 AND month(entry_date) = month1) AS 'deposits',
+	(SELECT AVG(amount) FROM accountstatement WHERE amount < 0 AND YEAR(entry_date) = year1 AND month(entry_date) = month1) AS 'average withdrawals',
+	(SELECT AVG(amount) FROM accountstatement WHERE amount > 0 AND YEAR(entry_date) = year1 AND month(entry_date) = month1) AS 'average deposits',
+	SUM(amount) AS difference
+FROM 
+	accountstatement
+GROUP BY
+	YEAR(entry_date),
+	MONTH(entry_date)
+
+	
