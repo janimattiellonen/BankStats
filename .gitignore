@@ -5,4 +5,10 @@
 /vendor/
 /app/config/parameters.ini
 /nbproject
-
+node_modules
+.idea
+/web/css/*
+/web/css/!jquery-ui
+/web/js/*
+/data
+.DS_Store
