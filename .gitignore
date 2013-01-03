@@ -2,8 +2,9 @@
 /app/bootstrap*
 /app/cache/*
 /app/logs/*
-/vendor/
+/vendor
 /app/config/parameters.ini
+app/config/parameters.yml
 /nbproject
 node_modules
 .idea
@@ -12,3 +13,4 @@ node_modules
 /web/js/*
 /data
 .DS_Store
+composer.phar
