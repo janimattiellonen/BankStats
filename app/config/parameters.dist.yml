@@ -1,0 +1,25 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     bankstats_db
+    database_user:     admin
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       localhost
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            fi
+    secret:            jdshgfjsdhkgruwyetruyegsfjksdbg
+    node_bin:          /opt/local/bin/node
+
+    domain:            bankstats.localhost
+
+    # use one of these
+    # use this if you have node in your project folder:
+    node_modules_path:  %kernel.root_dir%/../node_modules
+
+    # default global setting for node in Linux:
+    #node_modules_path: /usr/lib/node_modules

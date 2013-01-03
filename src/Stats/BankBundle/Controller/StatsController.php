@@ -24,7 +24,7 @@ class StatsController extends Controller
         $service = $this->getAccountService();
         $form = $service->getAccountStatementForm(new AccountStatement() );
         
-        if($form->bindRequest($this->getRequest() )->isValid() )
+        if($form->bind($this->getRequest() )->isValid() )
         {
             $service->saveAcctountStatementByForm($form);
             return $this->redirect($this->generateUrl('stats_stats_list') );
